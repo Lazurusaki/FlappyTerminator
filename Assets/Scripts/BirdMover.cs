@@ -12,6 +12,7 @@ public class BirdMover : MonoBehaviour
 
     private InputDetector _inputDetector;
     private Rigidbody _rigidbody;
+    private Vector3 _startPosition;
     private Quaternion _startRotation;
    
     private void OnEnable()
@@ -32,6 +33,7 @@ public class BirdMover : MonoBehaviour
 
     private void Start()
     {
+        _startPosition = transform.position;
         _startRotation = transform.rotation;
     }
 
@@ -43,7 +45,13 @@ public class BirdMover : MonoBehaviour
     private void PullUp()
     {
         _rigidbody.velocity = new Vector2(_speed,_pullUpForce);
-        transform.rotation = _startRotation * Quaternion.Euler(Vector3.right *  _minRotation);
+        transform.rotation = _startRotation * Quaternion.Euler(Vector3.right * _minRotation);
     }
 
+    public void Reset()
+    {
+        transform.position = _startPosition;
+        transform.rotation = _startRotation;
+        _rigidbody.velocity = Vector2.zero;
+    }
 }

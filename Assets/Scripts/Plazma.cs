@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Plazma : MonoBehaviour
 {
-    public event Action<Enemy, Plazma>EnemyHit;
+    public event Action<Plazma, Collider> PlazmaHit;
 
     [SerializeField] private float _speed;
     [SerializeField] private AudioClip _sound;
@@ -27,8 +27,8 @@ public class Plazma : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Enemy enemy))
         {
-            enemy.Fall();
-            EnemyHit?.Invoke(enemy, this);
+            enemy.enabled = false;
+            PlazmaHit?.Invoke(this, other);
         }
     }
 }

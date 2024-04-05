@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 
-public class Enemy : Character
+public class Enemy : MonoBehaviour
 {
     private Rigidbody _rigidbody;
 

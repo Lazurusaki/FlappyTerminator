@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
@@ -10,8 +11,6 @@ public class Shooter : MonoBehaviour
     [SerializeField] private Plazma _bulletBrefab;
     [SerializeField] private Transform _spawnTransform;
     [SerializeField] protected float _cooldown = 0.1f;
-
-    private Plazma _bullet;
     
     private Coroutine _cooldownCorountine;
     private bool _canShoot = true;
@@ -25,8 +24,9 @@ public class Shooter : MonoBehaviour
     {
         if (_canShoot)
         {
-            _bullet = Instantiate(_bulletBrefab, _spawnTransform.position, _spawnTransform.rotation);
-            BulletSpawned?.Invoke(_bullet);
+            Vector3 position = new Vector3(_spawnTransform.position.x, _spawnTransform.position.y, 0);
+            Plazma bullet  = Instantiate(_bulletBrefab, position , _spawnTransform.rotation);
+            BulletSpawned?.Invoke(bullet);
 
             if (_cooldownCorountine != null)
             {

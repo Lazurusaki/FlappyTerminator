@@ -16,9 +16,9 @@ public class AIShooter : Shooter
 
         while (true)
         {
-            wait = new WaitForSeconds(Random.Range(_cooldown, _maxWait));
-            SpawnBullet();
+            wait = new WaitForSeconds(Random.Range(_cooldown, _maxWait));      
             yield return wait;
+            SpawnBullet();
         }
     }
 }
